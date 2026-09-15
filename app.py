@@ -112,7 +112,7 @@ if scope.empty:
 # Either condition alone is enough to trigger the flag.
 # ---------------------------------------------------------------------------
 STAGE_STALL_THRESHOLD = {
-    "Prospecting": 45, "Proposal Sent": 40, "Negotiation": 35,
+    "Prospecting": 40, "Proposal Sent": 28, "Negotiation": 30,
     "JBP Signed": 60, "Live Campaign": 60, "Renewal": 30,
 }
 
