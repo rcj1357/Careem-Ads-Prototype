@@ -36,7 +36,7 @@ DATA_PATH = os.path.join(os.path.dirname(__file__), "careem_ads_agency_pipeline_
 
 # Fixed, colorblind-safe colors so Endemic / Non-endemic always mean the same
 # thing wherever they appear on the page (donut, vertical breakdown, etc.)
-CATEGORY_COLORS = {"Endemic": "#0072B2", "Non-endemic": "#E69F00"}
+CATEGORY_COLORS = {"Endemic": "#00E784", "Non-endemic": "#00493E"}
 
 # ---------------------------------------------------------------------------
 # Data loading
