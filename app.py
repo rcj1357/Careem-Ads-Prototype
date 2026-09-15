@@ -165,7 +165,7 @@ open_pipeline_value = scope.loc[~scope["stage"].isin(CONFIRMED_STAGES), "pipelin
 pct_of_target_committed = confirmed_value / QUARTERLY_TARGET_USD if QUARTERLY_TARGET_USD else 0
 gap_to_target = QUARTERLY_TARGET_USD - confirmed_value
 
-t1, t2, t3 = st.columns(3)
+t1, t2 = st.columns(2)
 t1.metric(
     "% of Target Committed",
     f"{pct_of_target_committed*100:,.0f}%",
@@ -174,14 +174,9 @@ t1.metric(
 if gap_to_target > 0:
     t2.metric("Gap to Target", f"${gap_to_target/1e6:,.2f}M", help="Target minus confirmed revenue — still needs to be closed")
     remaining_coverage_ratio = open_pipeline_value / gap_to_target
-    t3.metric(
-        "Remaining Coverage",
-        f"{remaining_coverage_ratio:,.2f}x",
-        help="Open (not-yet-confirmed) pipeline ÷ the gap — how much open pipeline exists relative to what's still needed",
-    )
+   
 else:
     t2.metric("Gap to Target", "Target met ✅", help="Confirmed revenue already covers the target")
-    t3.metric("Remaining Coverage", "—")
 
 st.progress(min(pct_of_target_committed, 1.0), text=f"{pct_of_target_committed*100:,.0f}% of target confirmed")
 
