@@ -27,7 +27,7 @@ import plotly.express as px
 import streamlit as st
 
 st.set_page_config(
-    page_title="Careem Ads — Agency Partnerships Cockpit (Prototype)",
+    page_title="Careem Ads — Agency Partnerships Tracker (Prototype)",
     page_icon="📈",
     layout="wide",
 )
@@ -51,7 +51,7 @@ df = load_data()
 # ---------------------------------------------------------------------------
 # Header
 # ---------------------------------------------------------------------------
-st.title("📈 Careem Ads — Agency Partnerships GTM Cockpit")
+st.title("📈 Careem Ads — Agency Partnerships GTM Tracker")
 st.caption(
     "PROTOTYPE for the Associate Director of Ads Sales / Agency Partnerships Lead brief · "
     "100% dummy data, no confidential information · Built with Streamlit + an optional LLM layer"
