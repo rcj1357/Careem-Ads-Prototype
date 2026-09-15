@@ -1,5 +1,5 @@
 """
-Careem Ads — Agency Partnerships GTM Cockpit (PROTOTYPE)
+Careem Ads — Agency Partnerships GTM Tracker (PROTOTYPE)
 ----------------------------------------------------------
 Built for the Careem "Associate Director of Ads Sales / Agency Partnerships
 Lead" application take-home brief.
@@ -17,9 +17,7 @@ Data: 100% dummy/synthetic (see generate_data.py). No real Careem,
 agency, or client data is used anywhere in this prototype.
 
 Run locally:   streamlit run app.py
-Deploy free:   push this folder to a public GitHub repo, then deploy at
-               https://share.streamlit.io (Streamlit Community Cloud) —
-               takes ~2 minutes and gives you a public URL.
+
 """
 import os
 import datetime as dt
@@ -29,7 +27,7 @@ import plotly.express as px
 import streamlit as st
 
 st.set_page_config(
-    page_title="Careem Ads — Agency Partnerships Cockpit (Prototype)",
+    page_title="Careem Ads — Agency Partnerships Tracker (Prototype)",
     page_icon="📈",
     layout="wide",
 )
@@ -49,7 +47,7 @@ df = load_data()
 # ---------------------------------------------------------------------------
 # Header
 # ---------------------------------------------------------------------------
-st.title("📈 Careem Ads — Agency Partnerships GTM Cockpit")
+st.title("📈 Careem Ads — Agency Partnerships GTM Tracker")
 st.caption(
     "PROTOTYPE for the Associate Director of Ads Sales / Agency Partnerships Lead brief · "
     "100% dummy data, no confidential information · Built with Streamlit + an optional LLM layer"
