@@ -1,0 +1,7 @@
+[theme]
+# Careem official brand palette (brand.careem.com/colour)
+primaryColor = "#00E784"            # Careem Green — buttons, sliders, selected chips, progress bar
+backgroundColor = "#FAFFFC"         # Off White
+secondaryBackgroundColor = "#D6FFEA"  # Light Green — sidebar background
+textColor = "#001942"               # Midnight Blue
+font = "sans serif"
