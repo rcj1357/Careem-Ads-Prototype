@@ -231,13 +231,7 @@ st.divider()
 # ---------------------------------------------------------------------------
 st.subheader("⚠️ At-risk deals (rule-based flagging)")
 st.caption(
-    "This flags deals stalled beyond a stage-specific threshold, or in late stages with low win. The threshold is broken out as follows: 
-Prospecting: more than 40 days
-Proposal Sent: more than 30 days
-Negotiation: more than 28 days
-JBP Signed: more than 60 days
-Live Campaign: more than 60 days
-Renewal: more than 30 days"
+    "This flags deals stalled beyond a stage-specific threshold, or in late stages with low win. The threshold is broken out as follows: Prospecting: more than 40 days, Proposal Sent: more than 30 days, Negotiation: more than 28 days, JBP Signed: more than 60 days, Live Campaign: more than 60 days, Renewal: more than 30 days"
     "Probability — at first, this would be determined by simple, rule-based thresholds with entried based on experience and judgement. In future, once enough deal history has been generated, this would convert to a predictive model built on a real data pipeline — trained on actual won/lost/stalled outcomes — to flag at-risk deals based on learned patterns rather than fixed rules."
 )
 risk_cols = ["deal_id", "holding_group", "market", "client_vertical", "stage",
