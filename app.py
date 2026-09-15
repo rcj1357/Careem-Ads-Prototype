@@ -1,5 +1,5 @@
 """
-Careem Ads — Agency Partnerships GTM Tracker (PROTOTYPE)
+Careem Ads — Agency Partnerships GTM Cockpit (PROTOTYPE)
 ----------------------------------------------------------
 Built for the Careem "Associate Director of Ads Sales / Agency Partnerships
 Lead" application take-home brief.
@@ -17,7 +17,9 @@ Data: 100% dummy/synthetic (see generate_data.py). No real Careem,
 agency, or client data is used anywhere in this prototype.
 
 Run locally:   streamlit run app.py
-
+Deploy free:   push this folder to a public GitHub repo, then deploy at
+               https://share.streamlit.io (Streamlit Community Cloud) —
+               takes ~2 minutes and gives you a public URL.
 """
 import os
 import datetime as dt
@@ -27,7 +29,7 @@ import plotly.express as px
 import streamlit as st
 
 st.set_page_config(
-    page_title="Careem Ads — Agency Partnerships Tracker (Prototype)",
+    page_title="Careem Ads — Agency Partnerships Cockpit (Prototype)",
     page_icon="📈",
     layout="wide",
 )
@@ -36,7 +38,7 @@ DATA_PATH = os.path.join(os.path.dirname(__file__), "careem_ads_agency_pipeline_
 
 # Fixed, colorblind-safe colors so Endemic / Non-endemic always mean the same
 # thing wherever they appear on the page (donut, vertical breakdown, etc.)
-CATEGORY_COLORS = {"Endemic": "#00E784", "Non-endemic": "#00493E"}
+CATEGORY_COLORS = {"Endemic": "#0072B2", "Non-endemic": "#E69F00"}
 
 # ---------------------------------------------------------------------------
 # Data loading
@@ -51,20 +53,20 @@ df = load_data()
 # ---------------------------------------------------------------------------
 # Header
 # ---------------------------------------------------------------------------
-st.title("📈 Careem Ads — Agency Partnerships GTM Tracker")
+st.title("📈 Careem Ads — Agency Partnerships GTM Cockpit")
 st.caption(
     "PROTOTYPE for the Associate Director of Ads Sales / Agency Partnerships Lead brief · "
-    "100% dummy data, no confidential information · Built with Streamlit + an optional LLM layer (OpenAI's GPT-4o-mini (with GPT-4o as the alternate option in the sidebar dropdown) since the brief calls out ChatGPT as one of the free tools to consider"
+    "100% dummy data, no confidential information · Built with Streamlit + an optional LLM layer"
 )
 
 with st.expander("ℹ️ What is this, and why does it map to the role?", expanded=False):
     st.markdown(
         """
-This is a working prototype of the kind of operating tool I believe a Head of Agency
+This is a working prototype of the kind of operating tool a Head of Agency
 Partnerships would want on day one: **one screen that shows pipeline health
 across the Big 6 holding groups and three markets, flags what's at risk, and
 uses AI to draft the QBR narrative and next steps** — turning a task that
-normally takes a Partner Manager half a day into one that takes just minutes review and sense check.
+normally takes a Partner Manager half a day into a two-minute review.
 
 - **GTM ownership** → filter pipeline by market / holding group / quarter
 - **Forecasting & pipeline coverage** → weighted pipeline vs. a target, JBP attainment
@@ -105,14 +107,10 @@ if scope.empty:
 
 # ---------------------------------------------------------------------------
 # At-risk logic (simple, transparent rules — the kind a real ops function
-# would start with before layering on machine learning). A deal is flagged at-risk 
-# if it's been sitting in its current stage longer than a normal deal should 
-# (thresholds range from 30–60 days depending on stage), or if it's deep in the 
-# funnel (Negotiation or JBP Signed) but still has a win-probability under 35%. 
-# Either condition alone is enough to trigger the flag.
+# would start with before layering on ML)
 # ---------------------------------------------------------------------------
 STAGE_STALL_THRESHOLD = {
-    "Prospecting": 40, "Proposal Sent": 28, "Negotiation": 30,
+    "Prospecting": 45, "Proposal Sent": 40, "Negotiation": 35,
     "JBP Signed": 60, "Live Campaign": 60, "Renewal": 30,
 }
 
@@ -148,9 +146,8 @@ k6.metric("⚠️ At-risk Deals", n_at_risk, delta=None)
 st.divider()
 
 # ---------------------------------------------------------------------------
-# Target Attainment - This section compares confirmed, already-won revenue against the 
-# quarter's target, and shows whether the pipeline still in progress is large enough to 
-# close whatever gap remains.
+# Target attainment — confirmed (committed) revenue vs. target, and the
+# coverage still needed from open pipeline to close the remaining gap.
 # ---------------------------------------------------------------------------
 st.subheader("🎯 Target Attainment")
 st.caption(
@@ -165,7 +162,7 @@ open_pipeline_value = scope.loc[~scope["stage"].isin(CONFIRMED_STAGES), "pipelin
 pct_of_target_committed = confirmed_value / QUARTERLY_TARGET_USD if QUARTERLY_TARGET_USD else 0
 gap_to_target = QUARTERLY_TARGET_USD - confirmed_value
 
-t1, t2 = st.columns(2)
+t1, t2, t3 = st.columns(3)
 t1.metric(
     "% of Target Committed",
     f"{pct_of_target_committed*100:,.0f}%",
@@ -174,9 +171,14 @@ t1.metric(
 if gap_to_target > 0:
     t2.metric("Gap to Target", f"${gap_to_target/1e6:,.2f}M", help="Target minus confirmed revenue — still needs to be closed")
     remaining_coverage_ratio = open_pipeline_value / gap_to_target
-   
+    t3.metric(
+        "Remaining Coverage",
+        f"{remaining_coverage_ratio:,.2f}x",
+        help="Open (not-yet-confirmed) pipeline ÷ the gap — how much open pipeline exists relative to what's still needed",
+    )
 else:
     t2.metric("Gap to Target", "Target met ✅", help="Confirmed revenue already covers the target")
+    t3.metric("Remaining Coverage", "—")
 
 st.progress(min(pct_of_target_committed, 1.0), text=f"{pct_of_target_committed*100:,.0f}% of target confirmed")
 
@@ -226,8 +228,8 @@ st.divider()
 # ---------------------------------------------------------------------------
 st.subheader("⚠️ At-risk deals (rule-based flagging)")
 st.caption(
-    "This flags deals stalled beyond a stage-specific threshold, or in late stages with low win. The threshold is broken out as follows: Prospecting: more than 40 days, Proposal Sent: more than 30 days, Negotiation: more than 28 days, JBP Signed: more than 60 days, Live Campaign: more than 60 days, Renewal: more than 30 days"
-    "Probability — at first, this would be determined by simple, rule-based thresholds with entried based on experience and judgement. In future, once enough deal history has been generated, this would convert to a predictive model built on a real data pipeline — trained on actual won/lost/stalled outcomes — to flag at-risk deals based on learned patterns rather than fixed rules."
+    "Flags deals stalled beyond a stage-specific threshold, or in late stages with low win "
+    "probability — the first pass a real function would automate before layering on a predictive model."
 )
 risk_cols = ["deal_id", "holding_group", "market", "client_vertical", "stage",
              "pipeline_value_usd", "win_probability", "days_in_current_stage"]
@@ -241,7 +243,7 @@ st.divider()
 # ---------------------------------------------------------------------------
 # AI-drafted QBR narrative
 # ---------------------------------------------------------------------------
-st.subheader("AI-drafted QBR narrative & recommended actions")
+st.subheader("🤖 AI-drafted QBR narrative & recommended actions")
 
 focus_agency = st.selectbox("Generate for holding group:", ["All (selected filters)"] + sorted(scope["holding_group"].unique()))
 agency_scope = scope if focus_agency == "All (selected filters)" else scope[scope["holding_group"] == focus_agency]
