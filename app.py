@@ -27,12 +27,16 @@ import plotly.express as px
 import streamlit as st
 
 st.set_page_config(
-    page_title="Careem Ads — Agency Partnerships Tracker (Prototype)",
+    page_title="Careem Ads — Agency Partnerships Cockpit (Prototype)",
     page_icon="📈",
     layout="wide",
 )
 
 DATA_PATH = os.path.join(os.path.dirname(__file__), "careem_ads_agency_pipeline_dummy.csv")
+
+# Fixed, colorblind-safe colors so Endemic / Non-endemic always mean the same
+# thing wherever they appear on the page (donut, vertical breakdown, etc.)
+CATEGORY_COLORS = {"Endemic": "#0072B2", "Non-endemic": "#E69F00"}
 
 # ---------------------------------------------------------------------------
 # Data loading
@@ -47,7 +51,7 @@ df = load_data()
 # ---------------------------------------------------------------------------
 # Header
 # ---------------------------------------------------------------------------
-st.title("📈 Careem Ads — Agency Partnerships GTM Tracker")
+st.title("📈 Careem Ads — Agency Partnerships GTM Cockpit")
 st.caption(
     "PROTOTYPE for the Associate Director of Ads Sales / Agency Partnerships Lead brief · "
     "100% dummy data, no confidential information · Built with Streamlit + an optional LLM layer"
@@ -122,7 +126,7 @@ scope["at_risk"] = scope.apply(flag_at_risk, axis=1)
 # ---------------------------------------------------------------------------
 total_pipeline = scope["pipeline_value_usd"].sum()
 weighted_pipeline = scope["weighted_value_usd"].sum()
-QUARTERLY_TARGET_USD = 9_500_000  # illustrative target for the filtered universe
+QUARTERLY_TARGET_USD = 20_000_000  # illustrative target for the filtered universe
 coverage_ratio = total_pipeline / QUARTERLY_TARGET_USD if QUARTERLY_TARGET_USD else 0
 non_endemic_share = scope.loc[scope["category_type"] == "Non-endemic", "pipeline_value_usd"].sum() / total_pipeline
 jbp_signed_mask = scope["stage"].isin(["JBP Signed", "Live Campaign", "Renewal"])
@@ -136,6 +140,45 @@ k3.metric("Pipeline Coverage", f"{coverage_ratio:,.2f}x", help="Total pipeline �
 k4.metric("Non-endemic Share", f"{non_endemic_share*100:,.0f}%")
 k5.metric("JBP / Live / Renewal Mix", f"{jbp_attainment*100:,.0f}%")
 k6.metric("⚠️ At-risk Deals", n_at_risk, delta=None)
+
+st.divider()
+
+# ---------------------------------------------------------------------------
+# Target attainment — confirmed (committed) revenue vs. target, and the
+# coverage still needed from open pipeline to close the remaining gap.
+# ---------------------------------------------------------------------------
+st.subheader("🎯 Target Attainment")
+st.caption(
+    "\"Confirmed\" = deals in JBP Signed / Live Campaign / Renewal — i.e. money that's actually "
+    "committed, not just being pursued. This shows how much of the target is already locked in, "
+    "and whether there's enough open pipeline left to cover what's missing."
+)
+
+CONFIRMED_STAGES = ["JBP Signed", "Live Campaign", "Renewal"]
+confirmed_value = scope.loc[scope["stage"].isin(CONFIRMED_STAGES), "pipeline_value_usd"].sum()
+open_pipeline_value = scope.loc[~scope["stage"].isin(CONFIRMED_STAGES), "pipeline_value_usd"].sum()
+pct_of_target_committed = confirmed_value / QUARTERLY_TARGET_USD if QUARTERLY_TARGET_USD else 0
+gap_to_target = QUARTERLY_TARGET_USD - confirmed_value
+
+t1, t2, t3 = st.columns(3)
+t1.metric(
+    "% of Target Committed",
+    f"{pct_of_target_committed*100:,.0f}%",
+    help=f"${confirmed_value:,.0f} confirmed ÷ ${QUARTERLY_TARGET_USD:,.0f} target",
+)
+if gap_to_target > 0:
+    t2.metric("Gap to Target", f"${gap_to_target/1e6:,.2f}M", help="Target minus confirmed revenue — still needs to be closed")
+    remaining_coverage_ratio = open_pipeline_value / gap_to_target
+    t3.metric(
+        "Remaining Coverage",
+        f"{remaining_coverage_ratio:,.2f}x",
+        help="Open (not-yet-confirmed) pipeline ÷ the gap — how much open pipeline exists relative to what's still needed",
+    )
+else:
+    t2.metric("Gap to Target", "Target met ✅", help="Confirmed revenue already covers the target")
+    t3.metric("Remaining Coverage", "—")
+
+st.progress(min(pct_of_target_committed, 1.0), text=f"{pct_of_target_committed*100:,.0f}% of target confirmed")
 
 st.divider()
 
@@ -155,7 +198,8 @@ with c1:
 with c2:
     by_cat = scope.groupby("category_type")["pipeline_value_usd"].sum().reset_index()
     fig_donut = px.pie(by_cat, names="category_type", values="pipeline_value_usd", hole=0.55,
-                        title="Endemic vs. Non-endemic Mix")
+                        title="Endemic vs. Non-endemic Mix",
+                        color="category_type", color_discrete_map=CATEGORY_COLORS)
     st.plotly_chart(fig_donut, use_container_width=True)
 
 c3, c4 = st.columns(2)
@@ -166,9 +210,13 @@ with c3:
     st.plotly_chart(fig_bar, use_container_width=True)
 
 with c4:
-    by_vertical = scope.groupby("client_vertical")["pipeline_value_usd"].sum().sort_values(ascending=True).reset_index()
+    by_vertical = (
+        scope.groupby(["client_vertical", "category_type"])["pipeline_value_usd"].sum().reset_index()
+    )
     fig_vert = px.bar(by_vertical, x="pipeline_value_usd", y="client_vertical", orientation="h",
-                       title="Pipeline by Client Vertical (proxy for non-endemic mix)")
+                       color="category_type", color_discrete_map=CATEGORY_COLORS,
+                       title="Pipeline by Client Vertical (colored by Endemic / Non-endemic)")
+    fig_vert.update_yaxes(categoryorder="total ascending")
     st.plotly_chart(fig_vert, use_container_width=True)
 
 st.divider()
