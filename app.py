@@ -8,10 +8,10 @@ What this demonstrates, mapped to the role's core responsibilities:
   1. Agency GTM strategy & pipeline ownership across UAE / KSA / Egypt
      and the Big 6 holding groups.
   2. Pipeline planning, forecasting & JBP attainment tracking — the
-     operating rhythm a Head of Agency Partnerships would run monthly.
+     operating rhythm I would monitor closely as Head of Agency Partnerships.
   3. An AI layer that auto-flags at-risk deals and auto-drafts a business
-     update + recommended actions, so Partner Managers spend less
-     time building slides and more time in the room with agencies.
+     update + recommended actions to delegate to Partner Managers so they spend 
+     less time manually reviewing data and more time delivering tangible actions and outcomes.
 
 Data: 100% dummy/synthetic (see generate_data.py). No real Careem,
 agency, or client data is used anywhere in this prototype.
@@ -34,8 +34,8 @@ st.set_page_config(
 
 DATA_PATH = os.path.join(os.path.dirname(__file__), "careem_ads_agency_pipeline_dummy.csv")
 
-# Careem official brand palette (brand.careem.com/colour), used consistently
-# across every chart on the page rather than default Plotly colors.
+# Careem brand palette (brand.careem.com/colour), used consistently
+# across every chart on the page rather than default colors.
 CAREEM_GREEN = "#00E784"
 MIDNIGHT_BLUE = "#001942"
 FOREST_GREEN = "#00493E"
@@ -61,7 +61,7 @@ df = load_data()
 # ---------------------------------------------------------------------------
 # Header
 # ---------------------------------------------------------------------------
-st.title("📈 Careem Ads — Agency Partnerships GTM Tracker")
+st.title("Careem — Agency Partnerships Lifecycle Tracker")
 st.caption(
     "PROTOTYPE for the Associate Director of Ads Sales / Agency Partnerships Lead brief · "
     "100% dummy data, no confidential information · Built with Streamlit + an optional LLM layer "
@@ -75,8 +75,8 @@ with st.expander("ℹ️ What is this, and why does it map to the role?", expand
 This is a working prototype of the kind of operating tool I believe a Head of Agency
 Partnerships would want on day one: **one screen that shows pipeline health
 across the Big 6 holding groups and three markets, flags what's at risk, and
-uses AI to draft the QBR narrative and next steps** — turning a task that
-normally takes a Partner Manager half a day into one that takes just minutes review and sense check.
+uses AI to draft business update narrative and tangible next steps** — turning a task that
+normally takes manual effort into one that takes just minutes review, sense check and delegate.
 
 - **GTM ownership** → filter pipeline by market / holding group / quarter
 - **Forecasting & pipeline coverage** → weighted pipeline vs. a target, JBP attainment
@@ -119,7 +119,7 @@ if scope.empty:
 # At-risk logic (simple, transparent rules — the kind a real ops function
 # would start with before layering on machine learning). A deal is flagged at-risk 
 # if it's been sitting in its current stage longer than a normal deal should 
-# (thresholds range from 30–60 days depending on stage), or if it's deep in the 
+# (thresholds range from 28–60 days depending on stage), or if it's deep in the 
 # funnel (Negotiation or JBP Signed) but still has a win-probability under 35%. 
 # Either condition alone is enough to trigger the flag.
 # ---------------------------------------------------------------------------
@@ -152,12 +152,12 @@ n_total_deals = int(len(scope))
 
 k0, k1, k2, k3, k4, k5, k6 = st.columns(7)
 k0.metric("Total Deals", n_total_deals)
-k1.metric("Total Pipeline", f"${total_pipeline/1e6:,.2f}M")
-k2.metric("Weighted Pipeline", f"${weighted_pipeline/1e6:,.2f}M")
+k1.metric("Total Pipeline", f"${total_pipeline/1e6:,.1f}M")
+k2.metric("Weighted Pipeline", f"${weighted_pipeline/1e6:,.1f}M")
 k3.metric("Pipeline Coverage", f"{coverage_ratio:,.2f}x", help="Total pipeline ÷ illustrative quarterly target")
 k4.metric("Non-endemic Share", f"{non_endemic_share*100:,.0f}%")
 k5.metric("JBP / Live / Renewal Mix", f"{jbp_attainment*100:,.0f}%")
-k6.metric("⚠️ At-risk Deals", n_at_risk, delta=None)
+k6.metric("At-risk Deals", n_at_risk, delta=None)
 
 st.divider()
 
