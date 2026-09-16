@@ -152,12 +152,12 @@ n_total_deals = int(len(scope))
 
 k0, k1, k2, k3, k4, k5, k6 = st.columns(7)
 k0.metric("Total Deals", n_total_deals)
-k1.metric("Total Pipeline", f"${total_pipeline/1e6:,.1f}M")
+k1.metric("Total Pipeline", f"${total_pipeline/1e6:,.1f}M", help="The total revenue associated with all items in the pipeline at any stage")
 k2.metric("Weighted Pipeline", f"${weighted_pipeline/1e6:,.1f}M")
 k3.metric("Pipeline Coverage", f"{coverage_ratio:,.2f}x", help="Total pipeline ÷ illustrative quarterly target")
-k4.metric("Non-endemic Share", f"{non_endemic_share*100:,.0f}%")
-k5.metric("JBP / Live / Renewal Mix", f"{jbp_attainment*100:,.0f}%")
-k6.metric("At-risk Deals", n_at_risk, delta=None)
+k4.metric("Non-endemic Share", f"{non_endemic_share*100:,.0f}%", help="Share of pipeline from advertisers outside Careem's listed categories."
+k5.metric("JBP / Live / Renewal Mix", f"{jbp_attainment*100:,.0f}%", , help="Share of the pipeline that's actually funded (PO Received, Live, or at Renewal stage), not just agreed in principle.")
+k6.metric("At-risk Deals", n_at_risk, delta=None, help="Deals stalled too long for their stage, or late-stage with low win-probability")
 
 st.divider()
 
