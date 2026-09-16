@@ -155,20 +155,18 @@ total_pipeline = scope["pipeline_value_usd"].sum()
 weighted_pipeline = scope["weighted_value_usd"].sum()
 QUARTERLY_TARGET_USD = 20_000_000  # illustrative target for the filtered universe
 coverage_ratio = total_pipeline / QUARTERLY_TARGET_USD if QUARTERLY_TARGET_USD else 0
-non_endemic_share = scope.loc[scope["category_type"] == "Non-endemic", "pipeline_value_usd"].sum() / total_pipeline
 jbp_signed_mask = scope["stage"].isin(["PO Received / Budget Confirmed", "Live Campaign", "Renewal"])
 jbp_attainment = scope.loc[jbp_signed_mask, "pipeline_value_usd"].sum() / total_pipeline
 n_at_risk = int(scope["at_risk"].sum())
 n_total_deals = int(len(scope))
 
-k0, k1, k2, k3, k4, k5, k6 = st.columns(7)
+k0, k1, k2, k3, k4, k5 = st.columns(6)
 k0.metric("Total Deals", n_total_deals)
 k1.metric("Total Pipeline", f"${total_pipeline/1e6:,.1f}M", help="The total revenue associated with all items in the pipeline at any stage")
 k2.metric("Weighted Pipeline", f"${weighted_pipeline/1e6:,.1f}M", help="Deal value × win-probability, summed — a more realistic forecast than raw pipeline.")
 k3.metric("Pipeline Coverage", f"{coverage_ratio:,.2f}x", help="Total pipeline ÷ illustrative quarterly target")
-k4.metric("Non-endemic Share", f"{non_endemic_share*100:,.0f}%", help="Share of pipeline from advertisers outside Careem's listed categories.")
-k5.metric("JBP / Live / Renewal Mix", f"{jbp_attainment*100:,.0f}%", help="Share of the pipeline that's actually funded (PO Received, Live, or at Renewal stage), not just agreed in principle.")
-k6.metric("At-risk Deals", n_at_risk, delta=None, help="Deals stalled too long for their stage, or late-stage with low win-probability")
+k4.metric("JBP / Live / Renewal Mix", f"{jbp_attainment*100:,.0f}%", help="Share of the pipeline that's actually funded (PO Received, Live, or at Renewal stage), not just agreed in principle.")
+k5.metric("At-risk Deals", n_at_risk, delta=None, help="Deals stalled too long for their stage, or late-stage with low win-probability")
 
 st.divider()
 
@@ -277,10 +275,10 @@ with c6:
     st.markdown("##### Why this split matters")
     st.caption(
         f"**{renewal_share*100:,.0f}%** of pipeline in the current filters is Renewal-stage — money "
-        "you're likely to keep, not new revenue you're winning for the first time. Blending the two "
-        "into one pipeline number can make growth look bigger than it is. A mature version of this "
-        "tool would track New/Growth pipeline and Renewal (retention) as two separate targets, since "
-        "leadership usually wants to know both \"did we hit the number\" and \"how much of that was "
+        "we should deem likely to keep, not incremental revenue we're winning for the first time. Blending the two "
+        "into one pipeline number can make growth look artificially larger than it is. A mature version of this "
+        "dashboard would track New/Growth pipeline and Renewal (retention) as two separate targets, since "
+        "leadership would usually benefit from understanding both \"did we hit the number\" and \"how much of that was "
         "actually new business.\""
     )
 
