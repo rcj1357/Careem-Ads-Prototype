@@ -1,0 +1,70 @@
+deal_id,deal_name,holding_group,agency_network,market,client_vertical,category_type,stage,pipeline_value_usd,win_probability,weighted_value_usd,quarter,days_in_current_stage,last_activity_date,jbp_annual_target_usd
+CA-1000,Falcon Motors — Festive Campaign,WPP,GroupM,UAE,Auto,Non-endemic,Proposal Sent,222000,0.33,73260,Q1 2026,4,2026-09-15,
+CA-1001,Marrakesh & Main — New Product Launch,WPP,GroupM,UAE,Fashion & Retail,Non-endemic,Prospecting,283000,0.13,36790,Q4 2026,19,2026-09-15,
+CA-1002,Amana Finance — Loyalty Relaunch,WPP,GroupM,UAE,Banking & Fintech,Non-endemic,Proposal Sent,861000,0.28,241080,Q1 2026,24,2026-09-04,
+CA-1003,Spice Route Kitchen — Ramadan Launch,WPP,GroupM,KSA,QSR & Food,Endemic,Renewal,467000,0.85,396950,Q3 2026,25,2026-08-28,558599
+CA-1004,Horizon Travel — Loyalty Relaunch,WPP,GroupM,KSA,Travel & Mobility,Endemic,Renewal,318000,0.94,298920,Q4 2026,25,2026-09-10,408659
+CA-1005,Crave Co. — Brand Awareness Push,WPP,GroupM,KSA,QSR & Food,Endemic,JBP Signed,255000,0.7,178500,Q2 2026,103,2026-09-07,406664
+CA-1006,Spice Route Kitchen — Always-On Media,WPP,GroupM,Egypt,QSR & Food,Endemic,Proposal Sent,112000,0.34,38080,Q4 2026,15,2026-09-05,
+CA-1007,Byte&Co — Regional Expansion,WPP,GroupM,Egypt,Electronics,Non-endemic,Proposal Sent,222000,0.27,59940,Q3 2026,29,2026-08-28,
+CA-1008,PayNest — New Product Launch,WPP,GroupM,Egypt,Banking & Fintech,Non-endemic,JBP Signed,173000,0.73,126290,Q1 2026,75,2026-09-02,241889
+CA-1009,Circuit House — Regional Expansion,WPP,GroupM,Egypt,Electronics,Non-endemic,JBP Signed,646000,0.74,478040,Q1 2026,9,2026-09-07,953134
+CA-1010,Zenith Bank — Loyalty Relaunch,Publicis Groupe,Publicis Media,UAE,Banking & Fintech,Non-endemic,Negotiation,819000,0.6,491400,Q3 2026,13,2026-09-07,
+CA-1011,Fresh Fields Market — Regional Expansion,Publicis Groupe,Publicis Media,UAE,Grocery & Retail,Endemic,Proposal Sent,860000,0.26,223600,Q1 2026,33,2026-09-15,
+CA-1012,Oasis Tours — Summer Refresh,Publicis Groupe,Publicis Media,UAE,Travel & Mobility,Endemic,Proposal Sent,326000,0.35,114100,Q1 2026,117,2026-09-13,
+CA-1013,Souk Express — New Product Launch,Publicis Groupe,Publicis Media,KSA,Grocery & Retail,Endemic,Proposal Sent,701000,0.29,203290,Q2 2026,14,2026-09-04,
+CA-1014,Oasis Tours — Brand Awareness Push,Publicis Groupe,Publicis Media,KSA,Travel & Mobility,Endemic,Negotiation,609000,0.54,328860,Q2 2026,23,2026-09-15,
+CA-1015,Zenith Bank — Brand Awareness Push,Publicis Groupe,Publicis Media,KSA,Banking & Fintech,Non-endemic,Prospecting,804000,0.12,96480,Q2 2026,59,2026-09-05,
+CA-1016,Kinetic Electronics — Back-to-School Push,Publicis Groupe,Publicis Media,KSA,Electronics,Non-endemic,Proposal Sent,215000,0.33,70950,Q4 2026,32,2026-09-02,
+CA-1017,Wanderway — Regional Expansion,Publicis Groupe,Publicis Media,Egypt,Travel & Mobility,Endemic,Negotiation,558000,0.59,329220,Q1 2026,8,2026-09-15,
+CA-1018,Spice Route Kitchen — Back-to-School Push,Publicis Groupe,Publicis Media,Egypt,QSR & Food,Endemic,Proposal Sent,274000,0.3,82200,Q2 2026,19,2026-09-01,
+CA-1019,Loom Fashion — Always-On Media,Publicis Groupe,Publicis Media,Egypt,Fashion & Retail,Non-endemic,Prospecting,747000,0.16,119520,Q1 2026,17,2026-09-10,
+CA-1020,Circuit House — Brand Awareness Push,Omnicom,OMD,UAE,Electronics,Non-endemic,Live Campaign,248000,0.94,233120,Q4 2026,31,2026-09-06,325253
+CA-1021,Nour Cosmetics — Ramadan Launch,Omnicom,OMD,UAE,Beauty & Personal Care,Endemic,Proposal Sent,383000,0.27,103410,Q1 2026,5,2026-09-10,
+CA-1022,Kinetic Electronics — New Product Launch,Omnicom,OMD,UAE,Electronics,Non-endemic,JBP Signed,623000,0.66,411180,Q1 2026,6,2026-09-11,706470
+CA-1023,Loom Fashion — Festive Campaign,Omnicom,OMD,UAE,Fashion & Retail,Non-endemic,Proposal Sent,688000,0.24,165120,Q1 2026,35,2026-09-05,
+CA-1024,Wanderway — Year-End Sale,Omnicom,OMD,UAE,Travel & Mobility,Endemic,Proposal Sent,485000,0.26,126100,Q3 2026,6,2026-09-15,
+CA-1025,Basil & Bloom — Loyalty Relaunch,Omnicom,OMD,UAE,QSR & Food,Endemic,Prospecting,298000,0.1,29800,Q2 2026,6,2026-09-14,
+CA-1026,Marrakesh & Main — Loyalty Relaunch,Omnicom,OMD,KSA,Fashion & Retail,Non-endemic,PO Received / Budget Confirmed,706000,1.0,706000,Q1 2026,21,2026-09-12,1108042
+CA-1027,Wave Connect — Loyalty Relaunch,Omnicom,OMD,KSA,Telco,Non-endemic,PO Received / Budget Confirmed,239000,1.0,239000,Q3 2026,15,2026-09-05,287230
+CA-1028,Falcon Motors — Loyalty Relaunch,Omnicom,OMD,KSA,Auto,Non-endemic,Live Campaign,132000,0.9,118800,Q4 2026,4,2026-09-15,167215
+CA-1029,Byte&Co — Year-End Sale,Omnicom,OMD,KSA,Electronics,Non-endemic,JBP Signed,517000,0.71,367070,Q1 2026,74,2026-08-29,578013
+CA-1030,Wave Connect — Back-to-School Push,Omnicom,OMD,Egypt,Telco,Non-endemic,Proposal Sent,895000,0.36,322200,Q1 2026,15,2026-09-08,
+CA-1031,Marrakesh & Main — New Product Launch,Omnicom,OMD,Egypt,Fashion & Retail,Non-endemic,Live Campaign,496000,0.98,486080,Q2 2026,17,2026-09-10,787699
+CA-1032,Drive Union — Festive Campaign,Omnicom,OMD,Egypt,Auto,Non-endemic,Live Campaign,501000,0.98,490980,Q2 2026,8,2026-09-09,769578
+CA-1033,Byte&Co — Loyalty Relaunch,Omnicom,OMD,Egypt,Electronics,Non-endemic,Negotiation,894000,0.59,527460,Q2 2026,79,2026-09-03,
+CA-1034,Horizon Travel — Year-End Sale,IPG,Mediabrands,UAE,Travel & Mobility,Endemic,Negotiation,601000,0.54,324540,Q3 2026,9,2026-09-11,
+CA-1035,Wanderway — Year-End Sale,IPG,Mediabrands,UAE,Travel & Mobility,Endemic,Prospecting,690000,0.09,62100,Q3 2026,34,2026-09-12,
+CA-1036,Wave Connect — Regional Expansion,IPG,Mediabrands,UAE,Telco,Non-endemic,PO Received / Budget Confirmed,81000,1.0,81000,Q2 2026,6,2026-09-10,126391
+CA-1037,Wanderway — Summer Refresh,IPG,Mediabrands,KSA,Travel & Mobility,Endemic,JBP Signed,762000,0.69,525780,Q4 2026,10,2026-09-12,998390
+CA-1038,Drive Union — Always-On Media,IPG,Mediabrands,KSA,Auto,Non-endemic,Negotiation,80000,0.53,42400,Q2 2026,22,2026-09-01,
+CA-1039,Lumo Beauty — Loyalty Relaunch,IPG,Mediabrands,KSA,Beauty & Personal Care,Endemic,Live Campaign,895000,0.98,877100,Q1 2026,23,2026-09-13,1350745
+CA-1040,Green Basket — New Product Launch,IPG,Mediabrands,Egypt,Grocery & Retail,Endemic,Prospecting,330000,0.16,52800,Q1 2026,14,2026-09-04,
+CA-1041,Amana Finance — Brand Awareness Push,IPG,Mediabrands,Egypt,Banking & Fintech,Non-endemic,Proposal Sent,784000,0.24,188160,Q1 2026,16,2026-09-10,
+CA-1042,Dune Retail — Brand Awareness Push,IPG,Mediabrands,Egypt,Fashion & Retail,Non-endemic,Proposal Sent,204000,0.29,59160,Q4 2026,22,2026-09-01,
+CA-1043,Dune Retail — Always-On Media,IPG,Mediabrands,Egypt,Fashion & Retail,Non-endemic,Negotiation,242000,0.58,140360,Q4 2026,17,2026-09-07,
+CA-1044,Nexa Telecom — Summer Refresh,Dentsu,Dentsu Media,UAE,Telco,Non-endemic,PO Received / Budget Confirmed,320000,1.0,320000,Q3 2026,7,2026-09-13,376133
+CA-1045,Crave Co. — Ramadan Launch,Dentsu,Dentsu Media,UAE,QSR & Food,Endemic,Negotiation,418000,0.56,234080,Q4 2026,108,2026-09-03,
+CA-1046,Velvet & Co. — Brand Awareness Push,Dentsu,Dentsu Media,UAE,Beauty & Personal Care,Endemic,Negotiation,440000,0.53,233200,Q4 2026,28,2026-08-29,
+CA-1047,Souk Express — Summer Refresh,Dentsu,Dentsu Media,UAE,Grocery & Retail,Endemic,Negotiation,359000,0.54,193860,Q1 2026,27,2026-09-10,
+CA-1048,Basil & Bloom — Festive Campaign,Dentsu,Dentsu Media,KSA,QSR & Food,Endemic,Prospecting,518000,0.06,31080,Q4 2026,18,2026-09-03,
+CA-1049,Atlas Auto — Ramadan Launch,Dentsu,Dentsu Media,KSA,Auto,Non-endemic,Live Campaign,468000,0.92,430560,Q4 2026,7,2026-09-08,519336
+CA-1050,Horizon Travel — Year-End Sale,Dentsu,Dentsu Media,KSA,Travel & Mobility,Endemic,Proposal Sent,150000,0.33,49500,Q1 2026,17,2026-09-09,
+CA-1051,Circuit House — Back-to-School Push,Dentsu,Dentsu Media,Egypt,Electronics,Non-endemic,PO Received / Budget Confirmed,657000,1.0,657000,Q2 2026,18,2026-09-04,777819
+CA-1052,Fresh Fields Market — Back-to-School Push,Dentsu,Dentsu Media,Egypt,Grocery & Retail,Endemic,Renewal,190000,0.91,172900,Q3 2026,26,2026-09-03,298440
+CA-1053,Amana Finance — New Product Launch,Dentsu,Dentsu Media,Egypt,Banking & Fintech,Non-endemic,Prospecting,871000,0.08,69680,Q1 2026,4,2026-09-13,
+CA-1054,Crave Co. — Always-On Media,Dentsu,Dentsu Media,Egypt,QSR & Food,Endemic,JBP Signed,429000,0.64,274560,Q4 2026,8,2026-09-09,677989
+CA-1055,Marrakesh & Main — Loyalty Relaunch,Havas,Havas Media,UAE,Fashion & Retail,Non-endemic,Renewal,356000,0.91,323960,Q4 2026,19,2026-09-05,543205
+CA-1056,Fresh Fields Market — Regional Expansion,Havas,Havas Media,UAE,Grocery & Retail,Endemic,PO Received / Budget Confirmed,663000,1.0,663000,Q4 2026,33,2026-09-05,789580
+CA-1057,Horizon Travel — Festive Campaign,Havas,Havas Media,UAE,Travel & Mobility,Endemic,Proposal Sent,690000,0.32,220800,Q3 2026,35,2026-09-09,
+CA-1058,Nour Cosmetics — Festive Campaign,Havas,Havas Media,UAE,Beauty & Personal Care,Endemic,JBP Signed,326000,0.72,234720,Q4 2026,3,2026-09-15,406560
+CA-1059,Wanderway — Loyalty Relaunch,Havas,Havas Media,KSA,Travel & Mobility,Endemic,Negotiation,623000,0.53,330190,Q3 2026,31,2026-09-07,
+CA-1060,Amana Finance — Year-End Sale,Havas,Havas Media,KSA,Banking & Fintech,Non-endemic,Proposal Sent,840000,0.3,252000,Q2 2026,32,2026-09-07,
+CA-1061,Horizon Travel — Ramadan Launch,Havas,Havas Media,KSA,Travel & Mobility,Endemic,Renewal,278000,0.88,244640,Q3 2026,56,2026-08-29,323395
+CA-1062,Zenith Bank — Ramadan Launch,Havas,Havas Media,KSA,Banking & Fintech,Non-endemic,JBP Signed,850000,0.7,595000,Q1 2026,32,2026-08-31,1122199
+CA-1063,Kinetic Electronics — Year-End Sale,Havas,Havas Media,KSA,Electronics,Non-endemic,Prospecting,146000,0.09,13140,Q1 2026,5,2026-09-14,
+CA-1064,PayNest — Loyalty Relaunch,Havas,Havas Media,Egypt,Banking & Fintech,Non-endemic,Prospecting,862000,0.09,77580,Q2 2026,26,2026-09-01,
+CA-1065,Nour Cosmetics — Back-to-School Push,Havas,Havas Media,Egypt,Beauty & Personal Care,Endemic,Proposal Sent,715000,0.25,178750,Q1 2026,15,2026-09-09,
+CA-1066,PayNest — Loyalty Relaunch,Havas,Havas Media,Egypt,Banking & Fintech,Non-endemic,JBP Signed,240000,0.64,153600,Q4 2026,32,2026-09-06,267917
+CA-1067,Nour Cosmetics — Summer Refresh,Havas,Havas Media,Egypt,Beauty & Personal Care,Endemic,Prospecting,319000,0.15,47850,Q2 2026,16,2026-09-11,
+CA-1068,PayNest — Brand Awareness Push,Havas,Havas Media,Egypt,Banking & Fintech,Non-endemic,Live Campaign,689000,0.98,675220,Q3 2026,31,2026-09-06,998958
